@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.custom-theme .el-switch__label.is-active {
+}
+.custom-theme .el-switch__label {
+  color: #ffffff;
+}
+.custom-theme .el-card__body {
+  width: 100% !important;
+  background-color: #ffffff;
+  z-index: 1;
+}
