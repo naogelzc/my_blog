@@ -1,0 +1,58 @@
+#scroll_top {
+  padding: 5px 30px;
+  text-align: center;
+  border-top-left-radius: 5px;
+  font-size: 12px;
+  color: #ccc;
+  opacity: 0.8;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+.ant-layout-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 3px hsl(0deg 0% 7% / 10%), 0 0 0 1px hsl(0deg 0% 7% / 10%);
+}
+.ant-layout-content {
+  min-height: auto;
+  margin: 0px;
+  padding: 0px;
+}
+.ant-layout-footer {
+  display: flex;
+  padding: 0 !important;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 5% !important;
+  background: rgb(233, 230, 230);
+  z-index: 1;
+}
+@media screen and (max-width: 639px) {
+  .ant-layout-header {
+    justify-content: flex-end;
+    padding: 0 0 0 10px !important;
+  }
+  .ant-layout-footer {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .ant-layout-header {
+    justify-content: flex-end;
+    padding: 0 0 0 10px !important;
+  }
+  .ant-layout-footer {
+    font-size: 1rem;
+  }
+}

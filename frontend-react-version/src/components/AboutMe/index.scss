@@ -1,0 +1,48 @@
+.about {
+  width: 60%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0px auto;
+  position: relative;
+  // min-height: 100px;
+}
+.title {
+  color: #303133;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.introduce {
+  margin-top: 10px;
+  margin-bottom: 35px;
+  .personal {
+    color: #606266;
+    font-size: 20px;
+    line-height: 2.5rem;
+    text-align: justify;
+  }
+}
+/* 移动端 */
+@media screen and (max-width: 639px) {
+  .about {
+    width: 80%;
+    padding: 0;
+  }
+  .title {
+    font-size: 20px;
+  }
+  .personal {
+    font-size: 12px;
+  }
+}
+
+/*适应pad端*/
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .about {
+    width: 80%;
+    padding: 0;
+  }
+  .title {
+    font-size: 20px;
+  }
+}

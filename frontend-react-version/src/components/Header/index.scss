@@ -1,0 +1,71 @@
+.ant-layout-header div {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+.ant-layout-header img {
+  height: 50px;
+  width: 50px;
+  margin-right: 5px;
+}
+.ant-layout-header .ant-menu {
+  border-style: none;
+}
+.ant-input {
+  width: 200px;
+  height: 45px;
+}
+@keyframes bounce {
+  0% {
+    bottom: 0px;
+  }
+  50% {
+    bottom: 20px;
+  }
+}
+/* MOBILE */
+@media screen and (max-width: 639px) {
+  .isShow {
+    display: none !important;
+  }
+  .ant-layout-header .ant-menu {
+    display: flex;
+    justify-content: space-around;
+  }
+  .ant-layout-header div {
+    padding: 0px;
+    justify-content: space-around;
+    margin: 0px;
+  }
+  .ant-input {
+    padding: 0px;
+    width: 100px;
+    height: 45px;
+    font-size: 13px;
+  }
+}
+
+/*PAD*/
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .isShow {
+    display: none !important;
+  }
+  .ant-layout-header .ant-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+  .ant-menu-horizontal > .ant-menu-item {
+    font-size: 1.7rem;
+  }
+  .ant-layout-header div {
+    justify-content: flex-start;
+    margin: 0px;
+  }
+  .ant-input {
+    /* padding: 0px 3px 0px 3px; */
+    width: 50%;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+}
