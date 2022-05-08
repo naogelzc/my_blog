@@ -4,6 +4,6 @@ This is [my blog](http://naoge.rinue.top/)
 
 ## Technology stack
 
-Frontend: vue
+Frontend: vue/react
 
 Backend: Laravel
