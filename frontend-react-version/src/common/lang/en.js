@@ -28,5 +28,6 @@ const blog = {
   blogIntroduction: "About Blog Website",
   contactMe: "Contact Me",
   total: "Total",
+  commentTitle: "Please input nickname and comments.",
 };
 export default blog;

@@ -3,39 +3,56 @@ import { loadFull } from "tsparticles";
 import "./index.scss";
 import ArticleList from "@/components/ArticleList";
 import Tag from "@/components/Tag";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
 import { categories as getCategories } from "@/api/blog";
+
+const getQuery = createSelector(
+  (state) => state.search,
+  (search) => search
+);
 
 function Categories() {
   const particlesInit = async (main) => {
     await loadFull(main);
   };
-  // const particlesLoaded = (container) => {
-  //   console.log(container);
-  // };
   const [categoriesList, setCategoriesList] = useState([]);
+  const [page, setPage] = useState({ pageNum: 1, pageSize: 10 });
+  const [total, setTotal] = useState(0);
+  const [tag, setTag] = useState([]);
+  const query = useSelector(getQuery);
+  const firstUpdate = useRef(true);
+
   useEffect(() => {
-    getData();
-  }, []);
-  const getData = (pageNum = 1, pageSize = 10, tag = [], query = "") => {
-    const params = {
-      pageNum,
-      pageSize,
-      query,
+    const getData = () => {
+      const { pageNum, pageSize } = page;
+      const params = {
+        pageNum,
+        pageSize,
+        query,
+      };
+      if (tag.length !== 0) {
+        params.tag = tag.toString();
+      }
+      getCategories(params).then((res) => {
+        setCategoriesList(res.data.list);
+        setTotal(res.data.total);
+      });
     };
-    if (tag.length !== 0) {
-      params.tag = tag.toString();
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    } else {
+      getData();
     }
-    getCategories(params).then((res) => {
-      setCategoriesList(res.data.list);
-    });
-  };
+  }, [page, tag, query]);
+
   return (
     <div className="app-wrapper">
       <Particles
         id="particles-js"
         init={particlesInit}
-        // loaded={particlesLoaded}
         options={{
           background: {
             color: {
@@ -109,8 +126,12 @@ function Categories() {
           detectRetina: true,
         }}
       />
-      <Tag />
-      <ArticleList blogList={categoriesList} />
+      <Tag updateTag={(list) => setTag(list)} />
+      <ArticleList
+        blogList={categoriesList}
+        total={total}
+        updatePage={(num, size) => setPage({ pageNum: num, pageSize: size })}
+      />
     </div>
   );
 }

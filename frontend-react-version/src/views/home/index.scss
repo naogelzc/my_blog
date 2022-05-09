@@ -28,6 +28,14 @@ h1 {
     width: 100%;
     height: 100%;
   }
+
+  .ant-skeleton-element {
+    width: 100% !important;
+    height: 100%;
+  }
+  .ant-skeleton-element .ant-skeleton-image {
+    width: 100% !important;
+  }
   .show-info {
     position: absolute;
     display: flex;
@@ -79,6 +87,13 @@ h1 {
     width: 100%;
     height: 100%;
   }
+  .ant-skeleton-element {
+    width: 100% !important;
+    height: 100%;
+  }
+  .ant-skeleton-element .ant-skeleton-image {
+    width: 100% !important;
+  }
   .show-info {
     position: absolute;
     display: flex;
@@ -127,6 +142,14 @@ h1 {
   .web-bg img {
     width: 100%;
     height: 100%;
+  }
+  .ant-skeleton-element {
+    width: 100% !important;
+    height: 100%;
+  }
+  .ant-skeleton-element .ant-skeleton-image {
+    width: 100% !important;
+    height: 90vh;
   }
   .show-info {
     position: absolute;

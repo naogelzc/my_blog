@@ -1,0 +1,336 @@
+.image {
+  width: 55%;
+  display: block;
+  position: relative;
+  margin: auto;
+}
+.custome {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.ql-editor {
+  height: auto !important;
+}
+pre.ql-syntax {
+  white-space: pre-wrap !important;
+  background-color: #23241f !important;
+  color: #f8f8f2;
+  overflow: visible;
+}
+/* 移动端 */
+@media screen and (max-width: 639px) {
+  .image {
+    display: none;
+  }
+  .main_box {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    letter-spacing: 0.5px;
+  }
+  .ismobile {
+    display: none;
+  }
+  .main_container {
+    margin: 0 auto;
+    min-height: 300px;
+    width: 100%;
+    /* width: 60%; */
+  }
+  .description {
+    font-size: 14px;
+    padding: 15px;
+    border-left: 8px solid #409eff;
+    padding-left: 20px;
+    min-height: 100px;
+    width: calc(100% - 8px - 20px - 15px);
+    /* 换行 */
+    word-wrap: break-word;
+    background-color: #f3f4f4;
+  }
+  .description::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+  .blog-title {
+    display: flex;
+    margin-top: 30px;
+    min-height: 50px;
+    line-height: 30px;
+    padding-left: 10px;
+    border-left: 6px solid #409eff;
+  }
+  .blog-container {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .addBtns {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+  }
+  .show-comment {
+    display: flex;
+    /* 竖向排列 */
+    flex-direction: column;
+    /* justify-content: center; */
+    justify-items: center;
+    margin: 5px 5px 3px 5px;
+  }
+  .header-ifo {
+    display: flex;
+    height: 60px;
+    flex-direction: row;
+  }
+  .header-img {
+    width: 50px;
+    height: 50px;
+  }
+  .header-img img {
+    width: 50px;
+    height: 50px;
+  }
+  .header-top {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    flex-direction: column;
+    margin: 0px 10px 5px 5px;
+  }
+  .header-footer {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+  }
+  .show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    margin: 5px 10px 0px 55px;
+    min-height: 60px;
+    padding: 5px;
+    background-color: #f3f4f4;
+  }
+}
+
+/*适应pad端*/
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .image {
+    display: none;
+  }
+  .main_box {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    letter-spacing: 0.5px;
+  }
+  .main_container {
+    padding: 28px;
+    min-height: 300px;
+  }
+  /* 文章介绍 */
+  .description {
+    font-size: 1.5rem;
+    padding: 15px;
+    border-left: 8px solid #409eff;
+    padding-left: 20px;
+    min-height: 100px;
+    width: 100%;
+    /* 换行 */
+    word-wrap: break-word;
+    background-color: #f3f4f4;
+  }
+  .description h4 {
+    font-size: 1.5rem !important;
+  }
+  .description::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+  }
+  /* 文章标题 */
+  .blog-title {
+    display: flex;
+    margin-top: 60px;
+    min-height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+    font-size: 1.5rem;
+    border-left: 6px solid #409eff;
+  }
+  /* 文章内容展示区 */
+  .blog-container {
+    font-size: 1.5rem;
+    margin-top: 40px;
+  }
+  /* 添加评论按钮 */
+  .addBtns {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+  }
+  .addBtns button {
+    font-size: 1.5rem;
+  }
+  /* 评论区 */
+  .show-comment {
+    display: flex;
+    /* 竖向排列 */
+    font-size: 1.5rem;
+    flex-direction: column;
+    /* justify-content: center; */
+    justify-items: center;
+    padding: 5px 5px 3px 5px;
+  }
+  .header-ifo {
+    display: flex;
+    height: 60px;
+    flex-direction: row;
+  }
+  .header-img {
+    width: 50px;
+    height: 50px;
+  }
+  .header-img img {
+    width: 50px;
+    height: 50px;
+  }
+  .header-top {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    flex-direction: column;
+    margin: 0px 10px 5px 5px;
+  }
+  .header-footer {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+  }
+  .header-top span:first {
+    font-size: 1.2rem;
+  }
+  .header-top span:nth-child(2) {
+    font-size: 1.1rem;
+  }
+  .header-top span:nth-child(3) {
+    font-size: 1.1rem;
+  }
+  .header-top span:nth-child(4) {
+    font-size: 1.1rem;
+  }
+  .header-footer span {
+    font-size: 1.2rem !important;
+  }
+  .show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    margin: 5px 10px 0px 55px;
+    min-height: 60px;
+    padding: 5px;
+    background-color: #f3f4f4;
+  }
+}
+
+/* PC端 */
+@media screen and (min-width: 1025px) {
+  .main_box {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 25px;
+    letter-spacing: 0.5px;
+  }
+
+  .main_container {
+    margin: 0 auto;
+    min-height: 300px;
+    width: 900px;
+    /* width: 60%; */
+  }
+  .description {
+    font-size: 14px;
+    padding: 15px;
+    border-left: 8px solid #409eff;
+    padding-left: 20px;
+    min-height: 100px;
+    width: 100%;
+    /* 换行 */
+    word-wrap: break-word;
+    background-color: #f3f4f4;
+  }
+  /* .description::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+} */
+  .blog-title {
+    display: flex;
+    margin-top: 60px;
+    min-height: 50px;
+    line-height: 50px;
+    padding-left: 10px;
+    border-left: 6px solid #409eff;
+  }
+  .blog-container {
+    font-size: 14px;
+    margin-top: 40px;
+  }
+  .addBtns {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+  }
+  .show-comment {
+    display: flex;
+    /* 竖向排列 */
+    flex-direction: column;
+    /* justify-content: center; */
+    justify-items: center;
+    margin: 5px 5px 3px 5px;
+  }
+  .header-ifo {
+    display: flex;
+    height: 60px;
+    flex-direction: row;
+  }
+  .header-img {
+    width: 50px;
+    height: 50px;
+  }
+  .header-img img {
+    width: 50px;
+    height: 50px;
+  }
+  .header-top {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    flex-direction: column;
+    margin: 0px 10px 5px 5px;
+  }
+  .header-footer {
+    display: flex;
+    margin-top: 5px;
+    justify-content: space-between;
+  }
+  .show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    margin: 5px 10px 0px 55px;
+    min-height: 60px;
+    padding: 5px;
+    background-color: #f3f4f4;
+  }
+}
+
+/* 鼠标经过回复按钮时 */
+.cursor {
+  cursor: pointer;
+}

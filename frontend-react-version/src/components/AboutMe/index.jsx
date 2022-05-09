@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useFormatMessage } from "react-intl-hooks";
-import { Tag, Row, Col, Input, Button } from "antd";
+import { Tag, Row, Col, Input, Button, Spin, message } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import "./index.scss";
 
-import { captcha } from "@/api/blog";
+import { captcha, contact } from "@/api/blog";
 
 const { TextArea } = Input;
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const getLang = createSelector(
   (state) => state.lang,
@@ -67,8 +70,9 @@ function AboutMe() {
   const [email, setEmail] = useState("");
   const [detail, setDetail] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
-  const [verifyKey, setVerifyKey] = useState("");
+  const [key, setVerifyKey] = useState("");
   const [imgcode, setImgcode] = useState("");
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
     changeCodeImg();
@@ -80,10 +84,46 @@ function AboutMe() {
     });
   };
   const reset = () => {
-    console.log("reset");
+    setUsername("");
+    setEmail("");
+    setDetail("");
+    setVerifyCode("");
+    changeCodeImg();
   };
   const submit = () => {
-    console.log("submit");
+    if (!username) {
+      message.error("Please input name");
+      return;
+    }
+    if (!email) {
+      message.error("Please input email");
+      return;
+    }
+    if (!detail) {
+      message.error("Please input detail");
+      return;
+    }
+    if (!verifyCode) {
+      message.error("Please input verify code");
+      return;
+    }
+    setLoad(true);
+    const params = {
+      username,
+      email,
+      detail,
+      verifyCode,
+      key,
+    };
+    contact(params).then((res) => {
+      setLoad(false);
+      reset();
+      if (typeof res === "undefined" || res.code !== 200) {
+        message.error(res.msg);
+        return;
+      }
+      message.success("I will contact you asap!");
+    });
   };
   return (
     <div className="about">
@@ -100,65 +140,67 @@ function AboutMe() {
         <Tag color="#108ee9">AntDesign</Tag>
         <Tag color="#134122">Laravel</Tag>
       </div>
-      <div className="introduce">
-        <h1 className="title">{t({ id: "contactMe" })}</h1>
-        <Row gutter={20}>
-          <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-            <Input
-              value={username}
-              onChange={(val) => setUsername(val)}
-              placeholder="Please input name"
-              style={{ width: "100%" }}
-            />
-          </Col>
-          <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-            <Input
-              value={email}
-              onChange={(val) => setEmail(val)}
-              placeholder="Please input email"
-              style={{ width: "100%" }}
-            />
-          </Col>
-        </Row>
-        <div style={{ margin: "20px 0" }} />
-        <Row gutter={20}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-            <TextArea
-              value={detail}
-              onChange={(val) => setDetail(val)}
-              placeholder="Please input detail"
-              style={{ width: "100%" }}
-            />
-          </Col>
-        </Row>
-        <div style={{ margin: "20px 0" }} />
-        <Row gutter={20}>
-          <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-            <img onClick={changeCodeImg} src={imgcode} alt="" />
-          </Col>
-          <Col xs={12} sm={12} md={6} lg={6} xl={6}>
-            <Input
-              value={verifyCode}
-              onChange={(val) => setVerifyCode(val)}
-              placeholder="Please input verify code"
-              style={{ width: "100%" }}
-            />
-          </Col>
-        </Row>
-        <div style={{ margin: "20px 0" }} />
-        <Row gutter={20}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-            <div style={{ margin: "0 auto", textAlign: "center" }}>
-              <Button onClick={reset} style={{ marginRight: "20px" }}>
-                {t({ id: "reset" })}
-              </Button>
-              <Button type="primary" onClick={submit}>
-                {t({ id: "send" })}
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </div>
+      <Spin indicator={antIcon} size={"large"} spinning={load}>
+        <div className="introduce">
+          <h1 className="title">{t({ id: "contactMe" })}</h1>
+          <Row gutter={20}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Please input name"
+                style={{ width: "100%" }}
+              />
+            </Col>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Please input email"
+                style={{ width: "100%" }}
+              />
+            </Col>
+          </Row>
+          <div style={{ margin: "20px 0" }} />
+          <Row gutter={20}>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <TextArea
+                value={detail}
+                onChange={(e) => setDetail(e.target.value)}
+                placeholder="Please input detail"
+                style={{ width: "100%" }}
+              />
+            </Col>
+          </Row>
+          <div style={{ margin: "20px 0" }} />
+          <Row gutter={20}>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+              <img onClick={changeCodeImg} src={imgcode} alt="" />
+            </Col>
+            <Col xs={12} sm={12} md={6} lg={6} xl={6}>
+              <Input
+                value={verifyCode}
+                onChange={(e) => setVerifyCode(e.target.value)}
+                placeholder="Please input verify code"
+                style={{ width: "100%" }}
+              />
+            </Col>
+          </Row>
+          <div style={{ margin: "20px 0" }} />
+          <Row gutter={20}>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <div style={{ margin: "0 auto", textAlign: "center" }}>
+                <Button onClick={reset} style={{ marginRight: "20px" }}>
+                  {t({ id: "reset" })}
+                </Button>
+                <Button type="primary" onClick={submit}>
+                  {t({ id: "send" })}
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </div>
+      </Spin>
     </div>
   );
 }

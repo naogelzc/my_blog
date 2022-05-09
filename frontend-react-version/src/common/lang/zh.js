@@ -28,5 +28,6 @@ const blog = {
   blogIntroduction: "本站介绍",
   contactMe: "联系我",
   total: "共计",
+  commentTitle: "请输入昵称与内容",
 };
 export default blog;

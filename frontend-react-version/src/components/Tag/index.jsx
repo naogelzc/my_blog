@@ -7,7 +7,7 @@ import { getTag } from "@/api/blog";
 
 const { Panel } = Collapse;
 
-function Tag() {
+function Tag(props) {
   const t = useFormatMessage();
   const [plainOptions, setPlainOptions] = useState([]);
   const [checkedList, setCheckedList] = useState([]);
@@ -26,12 +26,6 @@ function Tag() {
     getTags();
   }, []);
 
-  useEffect(() => {
-    if (checkedList.length !== 0) {
-      console.log(checkedList, "send api");
-    }
-  }, [checkedList]);
-
   const onChange = (list) => {
     if (list.length === 0) {
       let tags = [];
@@ -41,6 +35,11 @@ function Tag() {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);
     setCheckAll(list.length === plainOptions.length);
+    if (list.length === plainOptions.length) {
+      props.updateTag([]);
+    } else {
+      props.updateTag(list);
+    }
   };
 
   const onCheckAllChange = (e) => {
@@ -48,6 +47,7 @@ function Tag() {
       let tags = [];
       plainOptions.map((item) => tags.push(item.tag));
       setCheckedList(tags);
+      props.updateTag([]);
     } else {
       setCheckedList([]);
     }

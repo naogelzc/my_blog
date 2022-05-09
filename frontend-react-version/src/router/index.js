@@ -13,6 +13,10 @@ const router = [
     element: lazy(() => import("@/views/about")),
   },
   {
+    path: "/page",
+    element: lazy(() => import("@/views/page")),
+  },
+  {
     path: "*",
     element: lazy(() => import("@/views/404")),
   },

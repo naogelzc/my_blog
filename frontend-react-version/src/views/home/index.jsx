@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
+import { Skeleton } from "antd";
 import AboutMe from "@/components/AboutMe";
 import { getImage } from "@/api/blog";
 import ImageUrl from "@/assets/images/bg.jpg";
@@ -67,7 +68,7 @@ function Home() {
   return (
     <div>
       <div className="web-bg">
-        <img src={image} alt="" />
+        {image ? <img src={image} alt="" /> : <Skeleton.Image />}
         <div className="show-info">
           <div className="show-message">
             <h1>{str}</h1>
