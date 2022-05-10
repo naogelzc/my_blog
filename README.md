@@ -1,8 +1,8 @@
 # my_blog
 
-vue version: [my blog](http://naoge.rinue.top/)
+vue version: [http://naoge.rinue.top/](http://naoge.rinue.top/)
 
-react version: [my_blog](http://naoge-react.rinue.top/)
+react version: [http://naoge-react.rinue.top/](http://naoge-react.rinue.top/)
 
 ## Technology stack
 
