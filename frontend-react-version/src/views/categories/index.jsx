@@ -3,7 +3,7 @@ import { loadFull } from "tsparticles";
 import "./index.scss";
 import ArticleList from "@/components/ArticleList";
 import Tag from "@/components/Tag";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { categories as getCategories } from "@/api/blog";
@@ -22,7 +22,6 @@ function Categories() {
   const [total, setTotal] = useState(0);
   const [tag, setTag] = useState([]);
   const query = useSelector(getQuery);
-  const firstUpdate = useRef(true);
 
   useEffect(() => {
     const getData = () => {
@@ -40,8 +39,7 @@ function Categories() {
         setTotal(res.data.total);
       });
     };
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
+    if (tag.length === 0) {
       return;
     } else {
       getData();
@@ -126,7 +124,7 @@ function Categories() {
           detectRetina: true,
         }}
       />
-      <Tag updateTag={(list) => setTag(list)} />
+      <Tag updateTag={useCallback(() => (list) => setTag(list), [])} />
       <ArticleList
         blogList={categoriesList}
         total={total}

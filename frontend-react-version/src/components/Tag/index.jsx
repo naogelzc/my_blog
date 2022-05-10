@@ -13,6 +13,7 @@ function Tag(props) {
   const [checkedList, setCheckedList] = useState([]);
   const [indeterminate, setIndeterminate] = useState(false);
   const [checkAll, setCheckAll] = useState(true);
+  const { updateTag } = props;
 
   useEffect(() => {
     const getTags = async () => {
@@ -21,10 +22,11 @@ function Tag(props) {
         let tags = [];
         res.data.list.map((item) => tags.push(item.tag));
         setCheckedList(tags);
+        updateTag()(tags);
       });
     };
     getTags();
-  }, []);
+  }, [updateTag]);
 
   const onChange = (list) => {
     if (list.length === 0) {
@@ -35,11 +37,7 @@ function Tag(props) {
     setCheckedList(list);
     setIndeterminate(!!list.length && list.length < plainOptions.length);
     setCheckAll(list.length === plainOptions.length);
-    if (list.length === plainOptions.length) {
-      props.updateTag([]);
-    } else {
-      props.updateTag(list);
-    }
+    updateTag()(list);
   };
 
   const onCheckAllChange = (e) => {
@@ -47,7 +45,7 @@ function Tag(props) {
       let tags = [];
       plainOptions.map((item) => tags.push(item.tag));
       setCheckedList(tags);
-      props.updateTag([]);
+      updateTag()(tags);
     } else {
       setCheckedList([]);
     }
